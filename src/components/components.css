@@ -1,0 +1,76 @@
+
+#MainHeader{
+  display:grid;
+  grid-template-columns: 125px 1fr 125px;
+  grid-template-rows: 20px 1fr 20px;
+  border: solid;
+}
+
+#regLink {
+  grid-row-start: 1;
+  grid-column-start: 1;
+  text-align: left;
+}
+
+#loginLink {
+  grid-row-start: 1;
+  grid-column-start: 5;
+  text-align: right;
+}
+
+#mainTitle {
+  grid-row-start: 2;
+  grid-column-start: 2;
+  text-align: center;
+  font-size:50px;
+}
+
+.neilCaffreyA{
+  width: 55px;
+  height: 55px;
+  float: left;
+}
+
+.neilCaffreyB{
+  width: 55px;
+  height: 55px;
+  float: right;
+}
+.threadInfo{
+  display:grid;
+  grid-template-columns: 125px 4fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  border: solid;
+}
+
+.threadPic{
+  grid-column-start: 1;
+  grid-row-start: 1;
+  grid-row-end: span 2;
+}
+
+.avatar{
+  width: 100px;
+  height: 100px;
+}
+
+.threadInfoTitle{
+  text-align: left;
+  grid-column-start: 2;
+  grid-column-end: span 2;
+  grid-row-start: 1;
+}
+
+.threadInfoSecondLine{
+  text-align: left;
+  grid-column-start: 2;
+  grid-row-start: 2;
+
+}
+
+.threadInfoNoOfPosts{
+  text-align: left;
+  grid-column-start: 3;
+  grid-row-start: 2;
+
+}
