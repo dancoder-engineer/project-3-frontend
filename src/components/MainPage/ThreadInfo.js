@@ -1,15 +1,15 @@
 import React from "react"
-import './components.css'
+import '../components.css'
 import { NavLink } from "react-router-dom";
 
 function ThreadInfo({thread}) {
     let link="/thread/"+thread.id+"/"
+//    console.log(thread)
 
     return (
         <div className="threadInfo">
-            {console.log(thread)}
             <div className="threadPic">
-                <img className="avatar" src={thread.posts[0].site_user.avatar} />
+                <img className="avatar" alt="Alt Text" src={thread.posts[0].site_user.avatar} />
             </div>
             <div className="threadInfoTitle">
             <NavLink to={link}>

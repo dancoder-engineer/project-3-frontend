@@ -6,6 +6,12 @@
   border: solid;
 }
 
+#loggedInSpiel {
+  grid-row-start: 1;
+  grid-column-start: 2;
+  text-align: center;
+}
+
 #regLink {
   grid-row-start: 1;
   grid-column-start: 1;
@@ -36,6 +42,7 @@
   height: 55px;
   float: right;
 }
+
 .threadInfo{
   display:grid;
   grid-template-columns: 125px 4fr 1fr;
@@ -65,12 +72,89 @@
   text-align: left;
   grid-column-start: 2;
   grid-row-start: 2;
-
 }
 
 .threadInfoNoOfPosts{
   text-align: left;
   grid-column-start: 3;
   grid-row-start: 2;
+}
 
+.modName { color: red }
+
+
+
+
+.threadHeader{
+  display:grid;
+  grid-template-columns: 125px 4fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.threadHeaderTitle{
+  text-align: center;
+  grid-column-start: 1;
+  grid-column-end: span 3;
+  grid-row-start: 1;
+}
+
+.threadHeaderSecondLine{
+  text-align: center;
+  grid-column-start: 1;
+  grid-column-end: span 3;
+  grid-row-start: 2;
+}
+
+
+.postDiv{
+  border: solid;
+}
+
+
+
+.postHeader{
+  display:grid;
+  grid-template-columns: 55px 4fr 2fr;
+  grid-template-rows: 1fr 1fr;
+  border:solid;
+}
+
+.postHeaderUserName{
+  text-align: left;
+  grid-column-start: 2;
+  grid-column-end: span 2;
+  grid-row-start: 1;
+}
+
+.postHeaderTag{
+  text-align: left;
+  grid-column-start: 2;
+  grid-row-start: 2;
+}
+
+.postHeaderDate{
+  text-align: right;
+  grid-column-start: 3;
+  grid-row-start: 2;
+}
+
+.postHeaderPostNum{
+  text-align: right;
+  grid-column-start: 3;
+  grid-row-start: 1;
+}
+
+.postHeaderPic{
+  grid-column-start: 1;
+  grid-row-start: 1;
+  grid-row-end: span 2;
+}
+
+.postHeaderAvatar{
+  width: 50px;
+  height: 50px;
+}
+
+#logout{
+  text-align: center;
 }
