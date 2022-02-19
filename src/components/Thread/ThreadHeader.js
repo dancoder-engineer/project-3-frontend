@@ -3,6 +3,8 @@ import '../components.css'
 
 function ThreadHeader({thisthread}) {
 
+    
+
 return(
  <div className="threadHeader">
         <div className="threadHeaderTitle">

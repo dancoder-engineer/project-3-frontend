@@ -9,6 +9,8 @@ function AppHeader({userName, loggedInSpiel}) {
     let registerLink=<NavLink to="/register/">Register</NavLink>
     let NullLink=<div></div>
 
+
+
     return (
         <div id="MainHeader">
         <div id="regLink">{userName !=="Not Logged In" ? NullLink : registerLink}</div>
