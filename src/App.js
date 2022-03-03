@@ -5,12 +5,17 @@ import Thread from "./components/Thread.js"
 import Login from "./components/Register.Login/Login.js"
 import LogOut from "./components/Register.Login/LogOut.js"
 import Register from "./components/Register.Login/Register.js"
-import { Routes ,Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
-  const [loggedInSpiel, setLoggedInSpiel] = useState("User is not Logged In")
-  const [userName, setUserName] = useState("Not Logged In")
+ // const [loggedInSpiel, setLoggedInSpiel] = useState("")
+  //const [userName, setUserName] = useState("")
+  //let userName=""
   const [threads, setThreads] = useState([])
+  const [userData, setUserData] = useState({
+    name: ""
+  })
+  //let userData = {}
 
   useEffect(() => {
     fetch ("http://localhost:9293/threads/")
@@ -22,17 +27,16 @@ function App() {
 
 
   function loginFunct (username, password) {
-   // console.log(`UserName: ${username} Password: ${password}`)
     
       fetch (`http://localhost:9293/users/${username}/`)
       .then (res=>res.json())	
       .then(data => {
-        
+     //   console.log(data[0].password === password)
         if (data.length !== 0) {
           if (data[0].password === password) {
-            setUserName(username)
-            setLoggedInSpiel(`Logged in as ${username}`)
-            console.log(data)
+           // userData = data[0]
+            setUserData(data[0])
+           // console.log(data)
           }
         }
       } )
@@ -40,8 +44,10 @@ function App() {
   }
 
   function logOutFunct () {
-    setUserName("Not Logged In")
-    setLoggedInSpiel("User is not Logged In")
+    setUserData({
+      name: ""
+    })
+  //  setLoggedInSpiel("User is not Logged In")
   }
 
 
@@ -50,10 +56,10 @@ function App() {
   return (
     <Routes>
     <Route path="/" exact
-      element={<ThreadsAll userName={userName} loggedInSpiel={loggedInSpiel} threads={threads} />} 
+      element={<ThreadsAll userName={userData.name} threads={threads} />} 
     />
     <Route path="/thread/:id"
-      element={<Thread threads={threads}/>} 
+      element={<Thread userData={userData} />} 
     />
     <Route path="/login/"
       element={<Login loginFunct={loginFunct}/>} />

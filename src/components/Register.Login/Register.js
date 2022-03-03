@@ -2,9 +2,9 @@ import React, {useState} from "react"
 import '../components.css'
 import { NavLink } from "react-router-dom";
 
-function Register({}) {
-    let [mess, setMess] = useState("The passwords don't match.")
-    let [showMessage, setShowMessage] = useState(false)
+function Register() {
+    let [mess, setMess] = useState("")
+    //let [showMessage, setShowMessage] = useState(false)
     let emptyDiv=<div><br /></div>
     let passWrong=<div><br />{mess}<br /><br /></div>
 
@@ -12,7 +12,7 @@ function Register({}) {
     function clickd(testUser) {
 
   
-        fetch (`http://localhost:9293/users//`, {
+        fetch (`http://localhost:9293/users/`, {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
@@ -37,11 +37,9 @@ function Register({}) {
         if (document.querySelector("#passw1rd").value === document.querySelector("#p2ssword").value) { 
             clickd(newUsr)
             setMess("User created. Please go back to the main page.")
-            setShowMessage(true)
         }
         else { 
             setMess("The passwords don't match.")
-            setShowMessage(true) 
         }
     }
 
@@ -55,7 +53,7 @@ return(
             E-Mail Address: <input id="email" /> <br />
             Password: <input id="passw1rd" /> <br />
             Repeat Password: <input id="p2ssword" /> <br />
-            {showMessage ? passWrong : emptyDiv}
+            {mess &&  <div><br />{mess}<br /><br /></div> }
             <button onClick={e => handleSubmit(e)}>Submit</button>
        </form><br />
        <NavLink to="../">Back to the main page</NavLink>

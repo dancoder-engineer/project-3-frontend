@@ -24,7 +24,7 @@ function Login({loginFunct}) {
        Password:  <input id="passwordBox" type="password" />
        <br /> <br />
        <button onClick={e => triggerValues(e)}>Submit</button>
-    </form>
+    </form><br />
     <NavLink to="../">Back</NavLink>
 </div>
 )

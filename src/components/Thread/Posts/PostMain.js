@@ -3,8 +3,8 @@ import '../../components.css'
 
 function PostMain({post}) {
 
-    console.log("main")
-    console.log(post)
+ //   console.log("main")
+ //   console.log(post)
     return(
     <div>{post.content}</div>
     )
