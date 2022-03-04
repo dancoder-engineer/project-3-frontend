@@ -1,6 +1,7 @@
 import './App.css';
 import React, {useState, useEffect} from "react"
 import ThreadsAll from "./components/MainPage/ThreadsAll.js"
+import NewThread from "./components/MainPage/NewThread.js"
 import Thread from "./components/Thread.js"
 import Login from "./components/Register.Login/Login.js"
 import LogOut from "./components/Register.Login/LogOut.js"
@@ -11,19 +12,12 @@ function App() {
  // const [loggedInSpiel, setLoggedInSpiel] = useState("")
   //const [userName, setUserName] = useState("")
   //let userName=""
-  const [threads, setThreads] = useState([])
   const [userData, setUserData] = useState({
     name: ""
   })
   //let userData = {}
 
-  useEffect(() => {
-    fetch ("http://localhost:9293/threads/")
-    .then (res=>res.json())	
-    .then(data => {setThreads(data) 
-  
-    })
-  },[])
+
 
 
   function loginFunct (username, password) {
@@ -31,13 +25,12 @@ function App() {
       fetch (`http://localhost:9293/users/${username}/`)
       .then (res=>res.json())	
       .then(data => {
-     //   console.log(data[0].password === password)
         if (data.length !== 0) {
           if (data[0].password === password) {
-           // userData = data[0]
             setUserData(data[0])
-           // console.log(data)
+            return true
           }
+          else {return false}
         }
       } )
     
@@ -56,17 +49,20 @@ function App() {
   return (
     <Routes>
     <Route path="/" exact
-      element={<ThreadsAll userName={userData.name} threads={threads} />} 
+      element={<ThreadsAll userName={userData.name} />} 
     />
     <Route path="/thread/:id"
       element={<Thread userData={userData} />} 
     />
     <Route path="/login/"
-      element={<Login loginFunct={loginFunct}/>} />
+      element={<Login loginFunct={loginFunct} userData={userData} />} />
     <Route path="/logout/"
       element={<LogOut logOutFunct={logOutFunct} />} />
     <Route path="/register/"
     element={<Register />} />
+    <Route path="/newthread/"
+    element={<NewThread />} />
+
   </Routes>
   );
 }

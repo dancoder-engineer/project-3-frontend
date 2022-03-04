@@ -60,7 +60,8 @@ function addAPost(userId, threadId, cont) {
               },
             body:JSON.stringify(postData)
         })
-        .then(() => grabPosts())
+        .then (res=>res.json())	
+        .then(() => grabPosts() )
 
 
 
@@ -71,7 +72,7 @@ function addAPost(userId, threadId, cont) {
        {ThisThread && <ThreadHeader thisthread={ThisThread} postZero={ThisThread.posts}/>}
       {ThisThread && makePosts()}
         <br />
-        <NewPost userId={userData.id} threadId={id} addAPost={addAPost}/>
+        {userData.name && <NewPost userId={userData.id} threadId={id} addAPost={addAPost}/>}
        <NavLink to="../../">Back to the main page</NavLink>
        <br />
     </div>
