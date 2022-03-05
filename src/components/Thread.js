@@ -4,9 +4,9 @@ import ThreadHeader from "./Thread/ThreadHeader";
 import PostHeader from "./Thread/Posts/PostHeader.js";
 import PostMain from "./Thread/Posts/PostMain.js";
 import NewPost from "./Thread/NewPost.js";
-import { useParams, NavLink, useSearchParams } from "react-router-dom"
+import { useParams, NavLink } from "react-router-dom"
 
-function Thread({userData}) {
+function Thread({userData, addAPost}) {
     let { id } = useParams();
     const [ThisThread, setThisThread] = useState(null)
     let url = `http://localhost:9293/threads/${id}/`
@@ -41,38 +41,14 @@ function Thread({userData}) {
     return postList 
 }
 
-function addAPost(userId, threadId, cont) {
-    console.log(userId)
-    console.log(threadId)
-    console.log(cont)
 
-    let postData = {
-        site_user_id: userId,
-        post_group_id: threadId,
-        content: cont
-    }
-
-    fetch (`http://localhost:9293/posts/`, {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-              },
-            body:JSON.stringify(postData)
-        })
-        .then (res=>res.json())	
-        .then(() => grabPosts() )
-
-
-
-}
 
     return(
    <div>
        {ThisThread && <ThreadHeader thisthread={ThisThread} postZero={ThisThread.posts}/>}
       {ThisThread && makePosts()}
         <br />
-        {userData.name && <NewPost userId={userData.id} threadId={id} addAPost={addAPost}/>}
+        {userData.name && <NewPost userId={userData.id} threadId={id} addAPost={addAPost} grabPosts={grabPosts}/>}
        <NavLink to="../../">Back to the main page</NavLink>
        <br />
     </div>

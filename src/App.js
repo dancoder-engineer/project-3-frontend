@@ -9,15 +9,35 @@ import Register from "./components/Register.Login/Register.js"
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
- // const [loggedInSpiel, setLoggedInSpiel] = useState("")
-  //const [userName, setUserName] = useState("")
-  //let userName=""
+
   const [userData, setUserData] = useState({
     name: ""
   })
-  //let userData = {}
+
+  function addAPost(userId, threadId, cont) {
+    console.log(userId)
+    console.log(threadId)
+    console.log(cont)
+
+    let postData = {
+        site_user_id: userId,
+        post_group_id: threadId,
+        content: cont
+    }
+
+    fetch (`http://localhost:9293/posts/`, {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+            body:JSON.stringify(postData)
+        })
+        .then (res=>res.json())	
 
 
+
+}
 
 
   function loginFunct (username, password) {
@@ -28,9 +48,7 @@ function App() {
         if (data.length !== 0) {
           if (data[0].password === password) {
             setUserData(data[0])
-            return true
           }
-          else {return false}
         }
       } )
     
@@ -40,7 +58,6 @@ function App() {
     setUserData({
       name: ""
     })
-  //  setLoggedInSpiel("User is not Logged In")
   }
 
 
@@ -49,10 +66,10 @@ function App() {
   return (
     <Routes>
     <Route path="/" exact
-      element={<ThreadsAll userName={userData.name} />} 
+      element={<ThreadsAll  userData={userData} addAPost={addAPost} />} 
     />
     <Route path="/thread/:id"
-      element={<Thread userData={userData} />} 
+      element={<Thread userData={userData} addAPost={addAPost} />} 
     />
     <Route path="/login/"
       element={<Login loginFunct={loginFunct} userData={userData} />} />
@@ -60,8 +77,7 @@ function App() {
       element={<LogOut logOutFunct={logOutFunct} />} />
     <Route path="/register/"
     element={<Register />} />
-    <Route path="/newthread/"
-    element={<NewThread />} />
+   
 
   </Routes>
   );

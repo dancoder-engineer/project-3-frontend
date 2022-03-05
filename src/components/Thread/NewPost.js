@@ -1,14 +1,17 @@
 import React from "react"
 import '../components.css'
 
-function NewPost({userId, threadId, addAPost}) {
+function NewPost({userId, threadId, addAPost, grabPosts}) {
 
 
     function clickSubmit(e){
         e.preventDefault()
         let cont = document.querySelector("#postBox").value
         document.querySelector("#postBox").value = ""
-        if (cont) {addAPost(userId, threadId, cont)}
+        if (cont) {
+            addAPost(userId, threadId, cont)
+            grabPosts()
+        }
     }
 
     return(
