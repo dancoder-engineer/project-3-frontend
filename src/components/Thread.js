@@ -9,7 +9,7 @@ import { useParams, NavLink } from "react-router-dom"
 function Thread({userData, addAPost}) {
     let { id } = useParams();
     const [ThisThread, setThisThread] = useState(null)
-    let url = `http://localhost:9293/threads/${id}/`
+    let url = `http://localhost:9292/threads/${id}`
     
     
 
@@ -32,7 +32,7 @@ function Thread({userData, addAPost}) {
     let postList = ThisThread.posts.map((i, index) => {
         return(
             <div className="postDiv" key={index}>
-                <PostHeader post={i} postNo={index} />
+                <PostHeader post={i} postNo={index} isMod={userData.isMod} switchBan={switchBan} />
                 <PostMain post={i} />
             </div>
         )
@@ -42,6 +42,25 @@ function Thread({userData, addAPost}) {
 }
 
 
+function switchBan(id, banned){
+
+    let url = `http://localhost:9292/banUsers/${id}`
+   
+
+    fetch (url, {
+        method: 'PATCH',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          },
+        body:JSON.stringify({banned: !banned})
+    })
+    .then(res => res.json())
+    .then(() => {
+         grabPosts()
+    })
+  }
+ 
 
     return(
    <div>

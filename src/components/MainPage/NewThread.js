@@ -8,6 +8,8 @@ function NewThread({userData, createThread}) {
         let title=document.querySelector("#nameBox").value
         let cont=document.querySelector("#postBox").value
         createThread(title, cont)
+        document.querySelector("#nameBox").value=""
+        document.querySelector("#postBox").value=""
     }
 
     return(

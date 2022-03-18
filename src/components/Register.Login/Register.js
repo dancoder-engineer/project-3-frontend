@@ -12,7 +12,7 @@ function Register() {
     function clickd(testUser) {
 
   
-        fetch (`http://localhost:9293/users/`, {
+        fetch (`http://localhost:9292/users`, {
             method: 'post',
             headers: {
                 'Accept': 'application/json',

@@ -1,10 +1,10 @@
-import React from "react"
+import React, {useEffect} from "react"
 import '../components.css'
 import { NavLink } from "react-router-dom";
 
 function LogOut({logOutFunct}) {
 
-    logOutFunct()
+    useEffect(logOutFunct, [])
 
 return(
     <div id="logout">

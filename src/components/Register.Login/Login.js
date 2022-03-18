@@ -11,6 +11,7 @@ function Login({loginFunct, userData}) {
         let user=document.querySelector("#userBox")
         let pass=document.querySelector("#passwordBox")
         loginFunct(user.value, pass.value)
+        
         }
 
 

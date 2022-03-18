@@ -14,7 +14,7 @@ function ThreadsAll({userData, addAPost}) {
       title: title
     }
 
-    fetch (`http://localhost:9293/threads/`, {
+    fetch (`http://localhost:9292/threads/`, {
       method: 'post',
       headers: {
           'Accept': 'application/json',
@@ -28,14 +28,13 @@ function ThreadsAll({userData, addAPost}) {
     grabThreads()})
   
   }
-  //addAPost(userId, threadId, cont)
 
   useEffect(() => {
     grabThreads()
   },[])
 
   function grabThreads() {
-    fetch ("http://localhost:9293/threads/")
+    fetch ("http://localhost:9292/threads")
     .then (res=>res.json())	
     .then(data => {
       setThreadsMap(data.map(i => <ThreadInfo thread={i} key={i.id} />))

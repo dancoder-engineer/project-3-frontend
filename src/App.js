@@ -15,9 +15,6 @@ function App() {
   })
 
   function addAPost(userId, threadId, cont) {
-    console.log(userId)
-    console.log(threadId)
-    console.log(cont)
 
     let postData = {
         site_user_id: userId,
@@ -25,7 +22,7 @@ function App() {
         content: cont
     }
 
-    fetch (`http://localhost:9293/posts/`, {
+    fetch (`http://localhost:9292/posts`, {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
@@ -42,7 +39,7 @@ function App() {
 
   function loginFunct (username, password) {
     
-      fetch (`http://localhost:9293/users/${username}/`)
+      return fetch (`http://localhost:9292/users/${username}`)
       .then (res=>res.json())	
       .then(data => {
         if (data.length !== 0) {
@@ -59,7 +56,6 @@ function App() {
       name: ""
     })
   }
-
 
 
 
