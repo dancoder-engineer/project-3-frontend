@@ -1,11 +1,18 @@
-import React, {useState}  from "react"
+import React, {useEffect}  from "react"
 import '../components.css'
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Login({loginFunct, userData}) {
  //   document.querySelector("#userBox").value=""
  //   document.querySelector("#passwordBox").value=""
  //let [mess, setMess] = useState("")
+
+ const navigate = useNavigate()
+ useEffect(() => {
+     if (userData.name) {
+         navigate("../")
+        }
+    }, [userData.name])
 
     function values() {
         let user=document.querySelector("#userBox")
